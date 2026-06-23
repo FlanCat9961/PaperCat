@@ -1,0 +1,6 @@
+[Unit]
+Description=PaperCat crawl
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/papercat-daemon crawl --all

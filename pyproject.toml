@@ -1,0 +1,69 @@
+[project]
+name = "papercat"
+version = "0.1.0"
+description = "Wallpaper crawler and manager for Linux desktops"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.6",
+    "tomli-w>=1.0",
+    "httpx[socks]>=0.27",
+    "tenacity>=8.2",
+    "pillow>=10.0",
+    "PySide6>=6.6",
+    "qasync>=0.27",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["papercat*"]
+exclude = ["tests*", "systemd*"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "pytest-qt",
+    "pytest-cov",
+    "respx",
+    "mypy",
+    "ruff",
+]
+
+[project.scripts]
+papercat-daemon = "papercat.daemon.cli:main"
+papercat-gui = "papercat.gui.app:main"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+"papercat/gui/i18n/zh_CN.py" = ["RUF001"]
+
+[tool.mypy]
+strict = true
+python_version = "3.11"
+plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+module = "papercat.gui.*"
+disallow_untyped_decorators = false
+
+[[tool.mypy.overrides]]
+module = "qasync"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+addopts = "--cov=papercat --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["papercat"]
+omit = ["papercat/gui/windows/*", "papercat/gui/widgets/*"]

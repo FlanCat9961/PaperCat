@@ -1,0 +1,10 @@
+[Unit]
+Description=PaperCat cleanup timer
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec={{cleanup_interval}}
+Persistent=true
+
+[Install]
+WantedBy=timers.target

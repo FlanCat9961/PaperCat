@@ -1,0 +1,6 @@
+[Unit]
+Description=PaperCat cleanup
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/papercat-daemon cleanup

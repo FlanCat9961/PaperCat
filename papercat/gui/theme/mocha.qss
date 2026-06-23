@@ -1,0 +1,42 @@
+QWidget {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    font-family: "Inter", "Noto Sans CJK SC", sans-serif;
+    font-size: 14px;
+}
+
+QPushButton {
+    background: #313244;
+    color: #cdd6f4;
+    border: 1px solid #45475a;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+QPushButton:hover {
+    background: #45475a;
+    border-color: #cba6f7;
+}
+
+QPushButton:pressed {
+    background: #585b70;
+}
+
+QFrame#HeaderBar, QFrame#Sidebar, QFrame#DetailPanel, QListView#ThumbnailGrid {
+    background: #181825;
+    border: 1px solid #313244;
+    border-radius: 8px;
+}
+
+QLabel#Title {
+    color: #cba6f7;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+QLineEdit, QSpinBox, QComboBox, QTextEdit, QListWidget {
+    background: #11111b;
+    border: 1px solid #45475a;
+    border-radius: 8px;
+    padding: 6px;
+}
