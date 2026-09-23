@@ -1,42 +1,193 @@
+/* PaperCat V0.2 — 暗色毛玻璃主题
+ * 半透明深色面板 + 亮细边框 + 圆角，叠加在主窗口绘制的渐变模糊背景之上。
+ * 真·背景模糊在 Wayland 下不可行，此处为窗口内模拟。
+ */
+
 QWidget {
-    background: #1e1e2e;
     color: #cdd6f4;
     font-family: "Inter", "Noto Sans CJK SC", sans-serif;
     font-size: 14px;
 }
 
-QPushButton {
-    background: #313244;
-    color: #cdd6f4;
-    border: 1px solid #45475a;
-    border-radius: 8px;
-    padding: 8px 12px;
+/* 根容器透明，露出主窗口绘制的渐变模糊背景 */
+QWidget#RootSurface {
+    background: transparent;
 }
 
-QPushButton:hover {
-    background: #45475a;
-    border-color: #cba6f7;
-}
-
-QPushButton:pressed {
-    background: #585b70;
-}
-
-QFrame#HeaderBar, QFrame#Sidebar, QFrame#DetailPanel, QListView#ThumbnailGrid {
+QMainWindow {
     background: #181825;
-    border: 1px solid #313244;
-    border-radius: 8px;
+}
+
+/* 毛玻璃面板：半透明深色 + 亮细边框 + 圆角 */
+QFrame#HeaderBar,
+QFrame#Sidebar,
+QFrame#DetailDrawer {
+    background: rgba(30, 30, 46, 0.62);
+    border: 1px solid rgba(203, 166, 247, 0.28);
+    border-radius: 14px;
+}
+
+QListView#ThumbnailGrid {
+    background: rgba(24, 24, 37, 0.45);
+    border: 1px solid rgba(69, 71, 90, 0.55);
+    border-radius: 14px;
+    padding: 6px;
 }
 
 QLabel#Title {
     color: #cba6f7;
     font-size: 24px;
     font-weight: 700;
+    background: transparent;
 }
 
-QLineEdit, QSpinBox, QComboBox, QTextEdit, QListWidget {
-    background: #11111b;
-    border: 1px solid #45475a;
+QLabel {
+    background: transparent;
+}
+
+QPushButton {
+    background: rgba(49, 50, 68, 0.75);
+    color: #cdd6f4;
+    border: 1px solid rgba(69, 71, 90, 0.8);
+    border-radius: 10px;
+    padding: 8px 14px;
+}
+
+QPushButton:hover {
+    background: rgba(69, 71, 90, 0.85);
+    border-color: #cba6f7;
+}
+
+QPushButton:pressed {
+    background: rgba(88, 91, 112, 0.9);
+}
+
+QPushButton:disabled {
+    color: #6c7086;
+    border-color: rgba(69, 71, 90, 0.4);
+}
+
+/* 强调按钮（如「爬取所选/全部」） */
+QPushButton#Accent {
+    background: rgba(203, 166, 247, 0.22);
+    border: 1px solid rgba(203, 166, 247, 0.6);
+    color: #cba6f7;
+    font-weight: 600;
+}
+
+QPushButton#Accent:hover {
+    background: rgba(203, 166, 247, 0.32);
+}
+
+QLineEdit, QSpinBox, QComboBox, QTextEdit {
+    background: rgba(17, 17, 27, 0.7);
+    border: 1px solid rgba(69, 71, 90, 0.8);
     border-radius: 8px;
     padding: 6px;
+    selection-background-color: #cba6f7;
+    selection-color: #11111b;
+}
+
+QLineEdit:focus, QSpinBox:focus, QComboBox:focus, QTextEdit:focus {
+    border-color: #cba6f7;
+}
+
+QListWidget {
+    background: rgba(17, 17, 27, 0.55);
+    border: 1px solid rgba(69, 71, 90, 0.7);
+    border-radius: 10px;
+    padding: 4px;
+}
+
+QListWidget::item {
+    border-radius: 6px;
+    padding: 6px 8px;
+}
+
+QListWidget::item:selected {
+    background: rgba(203, 166, 247, 0.28);
+    color: #cdd6f4;
+}
+
+QListWidget::item:hover {
+    background: rgba(69, 71, 90, 0.5);
+}
+
+QCheckBox {
+    background: transparent;
+    spacing: 8px;
+}
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgba(69, 71, 90, 0.9);
+    border-radius: 4px;
+    background: rgba(17, 17, 27, 0.7);
+}
+
+QCheckBox::indicator:checked {
+    background: #cba6f7;
+    border-color: #cba6f7;
+}
+
+QComboBox::drop-down {
+    border: none;
+    width: 20px;
+}
+
+QComboBox QAbstractItemView {
+    background: #1e1e2e;
+    border: 1px solid rgba(203, 166, 247, 0.4);
+    border-radius: 8px;
+    selection-background-color: rgba(203, 166, 247, 0.3);
+}
+
+QProgressBar {
+    background: rgba(17, 17, 27, 0.7);
+    border: 1px solid rgba(69, 71, 90, 0.8);
+    border-radius: 8px;
+    text-align: center;
+    color: #cdd6f4;
+}
+
+QProgressBar::chunk {
+    background: #cba6f7;
+    border-radius: 7px;
+}
+
+QMenu {
+    background: #1e1e2e;
+    border: 1px solid rgba(203, 166, 247, 0.4);
+    border-radius: 8px;
+    padding: 4px;
+}
+
+QMenu::item {
+    padding: 6px 20px;
+    border-radius: 6px;
+}
+
+QMenu::item:selected {
+    background: rgba(203, 166, 247, 0.28);
+}
+
+QScrollBar:vertical {
+    background: transparent;
+    width: 10px;
+    margin: 2px;
+}
+
+QScrollBar::handle:vertical {
+    background: rgba(108, 112, 134, 0.6);
+    border-radius: 5px;
+    min-height: 30px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: rgba(203, 166, 247, 0.6);
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0;
 }

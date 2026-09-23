@@ -208,7 +208,7 @@ def test_main_window_crawl_button_starts_crawl(qtbot, tmp_path: Path) -> None:  
     from PySide6.QtWidgets import QMessageBox
 
     QMessageBox.information = fake_info  # type: ignore[assignment]
-    window._on_crawl_clicked()
+    window._on_crawl_all()
     assert controllers.crawl.started_with == [1]
 
 
